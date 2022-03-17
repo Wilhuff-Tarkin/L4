@@ -4,11 +4,11 @@ import java.util.List;
 
 public class DataGenerator {
 
-    protected ArrayList<Country> allCountries = createCountries();
-    protected ArrayList<Market> allMarkets = createMarkets();
-    protected ArrayList<Producer> allProducers = createProducers();
-    protected ArrayList<Dimension> allDimensionsSets = createDimensionsSets();
-    protected ArrayList<Car> allCars = createCars();
+    private ArrayList<Country> allCountries = createCountries();
+    private ArrayList<Market> allMarkets = createMarkets();
+    private ArrayList<Producer> allProducers = createProducers();
+    private ArrayList<Dimension> allDimensionsSets = createDimensionsSets();
+    private ArrayList<Car> allCars = createCars();
 
 
     private static ArrayList<Producer> createProducers() {

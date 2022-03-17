@@ -24,7 +24,7 @@ public class Car implements ConsoleFormatting {
         List<Car> result = allCars
                 .filter(car -> car.isAutomaticGear == shouldBeAutomatic)
                 .filter(car -> (car.getProducer().getModel()).equals(desiredManufacturer))
-                .filter(car -> car.getDimensions().trunkCapacity >= minimumTrunkCapacity)
+                .filter(car -> car.getDimensions().getTrunkCapacity() >= minimumTrunkCapacity)
                 .collect(Collectors.toList());
 
         if (result.size() == 0) {
@@ -45,7 +45,7 @@ public class Car implements ConsoleFormatting {
         System.out.println(GREEN_UNDERLINED + "All cars for sale are:" + ANSI_RESET);
         for (Car car : allCars) {
             System.out.println(ANSI_YELLOW + counter + ". " + car.getProducer().model + " " + car.getProducer().getType() + ANSI_RESET);
-            System.out.println("with " + setTransmissionInfo(car.isAutomaticGear) + " and trunk capacity of " + car.getDimensions().trunkCapacity + "l.");
+            System.out.println("with " + setTransmissionInfo(car.isAutomaticGear) + " and trunk capacity of " + car.getDimensions().getTrunkCapacity() + "l.");
             counter++;
         }
     }
@@ -56,12 +56,12 @@ public class Car implements ConsoleFormatting {
         Thread.sleep(750);
     }
 
-    public static void printPositiveResult(Car car, String manufacturer, boolean shouldBeAutomatic, int minimumTrunkCapacity) {
-        System.out.println(GREEN_UNDERLINED + manufacturer + " (" + car.getProducer().getType() + ")" + ANSI_RESET + " with " + setTransmissionInfo(shouldBeAutomatic) + setTrunkCapacityInfo(car.getDimensions().trunkCapacity, minimumTrunkCapacity));
+    private static void printPositiveResult(Car car, String manufacturer, boolean shouldBeAutomatic, int minimumTrunkCapacity) {
+        System.out.println(GREEN_UNDERLINED + manufacturer + " (" + car.getProducer().getType() + ")" + ANSI_RESET + " with " + setTransmissionInfo(shouldBeAutomatic) + setTrunkCapacityInfo(car.getDimensions().getTrunkCapacity(), minimumTrunkCapacity));
         car.getMarket().printCountries();
     }
 
-    public static void printNegativeResult(String manufacturer, boolean shouldBeAutomatic, int minimumTrunkCapacity) {
+    private static void printNegativeResult(String manufacturer, boolean shouldBeAutomatic, int minimumTrunkCapacity) {
         System.out.println();
         System.out.println("I did not found car produced by " + manufacturer + " with " + setTransmissionInfo(shouldBeAutomatic) + " and minimal trunk capacity of " + minimumTrunkCapacity + "l. " + ANSI_RED + "Sorry." + ANSI_RESET);
     }
